@@ -1,27 +1,34 @@
-// Here is my answer
+// Here is my answer, run =aaronsAnswer(quantity, price) to run
 
 // Object to store in data from function below
 var dataObject = {};
 
+// aaronsAnswer: pulls data off of the sheet and
+// multiplies quantity by price to get the total
+// as well as runs the showObject function (not currently working)
 
-// Function to show object on sheet
-function showObject(dataObject) {
-  var object = SpreadsheetApp.getActive();
-  object.appendRow(['Here is the object broken down', +
-                    dataObject.quantity, dataObject.price, +
-                    dataObject.rowTotal]);
-}
-
-// This is the function that pulls data off of the sheet and
-// calculates the total as well as runs the showObject function
 // =aaronsAnswer(quantity, price) in sheets
+
 function aaronsAnswer (quantity,price) {
   var rowTotal = quantity * price;
   dataObject.quantity = quantity;
   dataObject.price = price;
   dataObject.rowTotal = rowTotal;
 
-  showObject(dataObject);
+  //showObject(dataObject);
 
   return rowTotal;
+}
+
+// showObject: to show object visualy on sheet and
+// to also creat a JavaScript Friendly object to be passed
+// as a JSON for connecting to other apps.
+
+// !! I could not get the .appendRow() to work because of
+// permission issues with google docs for some reason. Still not sure.
+// It didn't even ask me for permission with that function.
+
+function showObject(dataObject) {
+  var jsObject = SpreadsheetApp.getActive();
+  jsObject.appendRow(['Here is the object broken down']);
 }
